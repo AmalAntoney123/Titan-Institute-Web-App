@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Institute PSC Quiz App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: rgb(222, 174, 71);
+            --grey-200: rgb(197, 197, 197);
+            --grey-300: rgb(138, 138, 138);
+            --grey-400: rgb(159, 162, 159);
+            --grey-800: rgb(86, 87, 86);
+            --blue-800: rgb(23, 32, 41);
+        }
+    </style>
+</head>
+<body style="background-color: var(--blue-800)" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="p-8 md:p-12">
+            <h1 style="color: var(--grey-200)" class="text-4xl md:text-6xl font-bold mb-6">Titan Institute</h1>
+            <h2 style="color: var(--yellow)" class="text-2xl md:text-3xl mb-8">PSC Exam Preparation App</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-left">
+                    <p style="color: var(--grey-200)" class="text-xl mb-6">Master your PSC exam preparation with our comprehensive quiz app:</p>
+                    <ul style="color: var(--grey-300)" class="space-y-4">
+                        <li class="flex items-center">
+                            <svg style="color: var(--yellow)" class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Expert-curated questions
+                        </li>
+                        <li class="flex items-center">
+                            <svg style="color: var(--yellow)" class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Topic-wise practice tests
+                        </li>
+                        <li class="flex items-center">
+                            <svg style="color: var(--yellow)" class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Performance analytics
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8">
+                        <button style="background-color: var(--yellow); color: var(--blue-800)" class="px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition duration-300 flex items-center justify-center w-full md:w-auto">
+                            Download App
+                            <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div style="background-color: var(--yellow)" class="absolute inset-0 opacity-10 blur-xl rounded-full"></div>
+                    <img src="img.jpg" alt="App Preview" class="relative mx-auto rounded-3xl shadow-2xl" style="border: 2px solid var(--yellow)"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
