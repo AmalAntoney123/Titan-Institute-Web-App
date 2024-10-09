@@ -79,6 +79,85 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(222, 174, 71, 0.2);
         }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Changed from center to flex-start */
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            /* Add scroll to backdrop */
+            padding: 1rem;
+            /* Add some padding */
+        }
+
+        /* Update modal-content style */
+        .modal-content {
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            margin: 2rem auto;
+            /* Center content and add vertical margin */
+            max-height: calc(100vh - 4rem);
+            /* Maximum height */
+            overflow-y: auto;
+            /* Make content scrollable if needed */
+        }
+
+        /* Optional: Add custom scrollbar styling */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(222, 174, 71, 0.1);
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(222, 174, 71, 0.5);
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(222, 174, 71, 0.7);
+        }
+
+        .modal-content {
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: scale(1);
+        }
+
+        .help-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .help-button:hover {
+            background-color: rgba(222, 174, 71, 0.2);
+        }
     </style>
 </head>
 
@@ -139,10 +218,11 @@
                         </li>
                     </ul>
 
-                    <div class="mt-8" id="download" data-aos="fade-up">
+                    <div class="mt-8 flex items-center space-x-4" id="download" data-aos="fade-up">
+                        <!-- Download Button -->
                         <a href="/titan.apk" download="titan.apk">
-                            <button style="background-color: var(--yellow); color: var(--blue-800)" class="download-btn px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 
-                                           transition duration-300 flex items-center justify-center w-full md:w-auto">
+                            <button style="background-color: var(--yellow); color: var(--blue-800)"
+                                class="download-btn px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition duration-300 flex items-center justify-center w-full md:w-auto">
                                 Download App
                                 <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -150,7 +230,16 @@
                                 </svg>
                             </button>
                         </a>
+
+                        <!-- Help Button -->
+                        <button
+                            class="help-button px-4 py-2 rounded-lg font-bold text-lg hover:opacity-90 transition duration-300"
+                            style="background-color: var(--blue-800); color: var(--yellow)" onclick="showModal()"
+                            aria-label="Installation Help">
+                            Help
+                        </button>
                     </div>
+
                 </div>
 
                 <div class="relative" data-aos="fade-left">
@@ -264,7 +353,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 style="color: var(--grey-200)" class="text-xl font-bold mb-4">Alapuzha</h4>
+                        <h4 style="color: var(--grey-200)" class="text-xl font-bold mb-4">Alappuzha</h4>
                         <p style="color: var(--grey-300)">
                             Titan Institute, Ulavukkad<br>
                             Nooranad P.O<br>
@@ -326,8 +415,11 @@
                             </svg>
                             institutetitan@gmail.com
                         </a>
-                        <a href="https://www.instagram.com/titan_institute" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-yellow-400 transition-colors duration-300" style="color: var(--grey-300)">
-                            <svg class="w-6 h-6 mr-2" style="color: var(--yellow)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <a href="https://www.instagram.com/titan_institute" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center hover:text-yellow-400 transition-colors duration-300"
+                            style="color: var(--grey-300)">
+                            <svg class="w-6 h-6 mr-2" style="color: var(--yellow)" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2" />
                                 <path d="M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-width="2" />
                                 <circle cx="18" cy="6" r="1" fill="currentColor" />
@@ -366,7 +458,7 @@
 
     <!-- Floating Download Button -->
     <div class="fixed bottom-4 right-4 md:hidden">
-        <a href="#download" style="background-color: var(--yellow); color: var(--blue-800)"
+        <a href="titan.apk" download="titan.apk" style="background-color: var(--yellow); color: var(--blue-800)"
             class="download-btn px-4 py-3 rounded-full font-bold hover:opacity-90 transition duration-300 flex items-center shadow-lg">
             <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -375,12 +467,66 @@
             Download
         </a>
     </div>
+    
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+    <!-- Add the template HTML here -->
+    <div id="download-help-template" style="display: none;">
+        <div class="modal-content p-6 rounded-lg"
+            style="background-color: rgb(23, 32, 41); border: 2px solid rgb(222, 174, 71); max-width: 500px; margin: auto;">
+            <div class="modal-header mb-4">
+                <h2 style="color: rgb(222, 174, 71);" class="text-xl font-bold mb-2">How to Install Our App</h2>
+                <button class="modal-close"
+                    style="position: absolute; right: 1rem; top: 1rem; color: rgb(197, 197, 197);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" style="color: rgb(197, 197, 197);">
+                <p class="font-semibold mb-2">Before downloading:</p>
+                <ul class="list-disc pl-5 mb-4 space-y-2" style="color: rgb(138, 138, 138);">
+                    <li>Ensure you have enough storage space</li>
+                    <li>A stable internet connection is recommended</li>
+                    <li>You may need to enable "Install from Unknown Sources" in your device settings</li>
+                </ul>
+
+                <div class="alert mb-4 p-4 rounded"
+                    style="background-color: rgba(222, 174, 71, 0.1); border: 1px solid rgba(222, 174, 71, 0.3);">
+                    <h3 class="font-bold mb-2" style="color: rgb(222, 174, 71);">Important Security Note</h3>
+                    <p style="color: rgb(138, 138, 138);">Your device might show a security warning about installing
+                        apps from unknown sources. This is normal for apps not downloaded from the Google Play Store.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <p class="font-semibold mb-2">Installation Steps:</p>
+                    <ol class="list-decimal pl-5 space-y-2" style="color: rgb(138, 138, 138);">
+                        <li>Click the "Download App" button</li>
+                        <li>Open your Downloads folder</li>
+                        <li>Tap the downloaded .apk file</li>
+                        <li>If prompted, go to Settings and enable "Install from Unknown Sources" for your browser</li>
+                        <li>Return to the download and tap "Install"</li>
+                        <li>Wait for installation to complete</li>
+                        <li>Tap "Open" to launch the app</li>
+                    </ol>
+                </div>
+
+                <div class="alert p-4 rounded"
+                    style="background-color: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);">
+                    <h3 class="font-bold mb-2" style="color: rgb(59, 130, 246);">Need Help?</h3>
+                    <p style="color: rgb(138, 138, 138);">If you encounter any issues during installation, please
+                        contact our support team at +91 85478 98004.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         // Initialize AOS
         AOS.init({
@@ -482,6 +628,54 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add help button next to download buttons
+            const downloadButtons = document.querySelectorAll('a[href="/titan.apk"]');
+            downloadButtons.forEach(button => {
+                const helpButton = document.createElement('button');
+                helpButton.className = 'help-button ml-2';
+                helpButton.style.color = 'rgb(222, 174, 71)';
+                helpButton.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+    `;
+                button.parentNode.insertBefore(helpButton, button.nextSibling);
+
+                helpButton.addEventListener('click', showModal);
+            });
+
+            // Modal functionality
+            const modalTemplate = document.getElementById('download-help-template');
+
+            function showModal() {
+                const modalBackdrop = document.createElement('div');
+                modalBackdrop.className = 'modal-backdrop';
+                modalBackdrop.innerHTML = modalTemplate.innerHTML;
+                document.body.appendChild(modalBackdrop);
+
+                // Trigger reflow to enable transition
+                modalBackdrop.offsetHeight;
+                modalBackdrop.classList.add('active');
+
+                const closeButton = modalBackdrop.querySelector('.modal-close');
+                closeButton.addEventListener('click', () => closeModal(modalBackdrop));
+
+                modalBackdrop.addEventListener('click', (e) => {
+                    if (e.target === modalBackdrop) closeModal(modalBackdrop);
+                });
+            }
+
+            function closeModal(modalBackdrop) {
+                modalBackdrop.classList.remove('active');
+                setTimeout(() => {
+                    modalBackdrop.remove();
+                }, 300);
+            }
         });
     </script>
 </body>
